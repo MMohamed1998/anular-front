@@ -1,0 +1,75 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="send()">
+        
+        <div class="mb-3">
+            <label class="form-label">name</label>
+            <input type="text" formControlName="name" class="form-control"
+            [ngClass]="{
+              'is-invalid': form.controls['name'].invalid && form.controls['name'].touched,
+              'is-valid': form.controls['name'].valid && form.controls['name'].touched,
+              }" >
+            <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" class="invalid-feedback">
+              <span *ngIf="form.controls['name'].hasError('required')">
+                Please Provide a correct Product name
+              </span>
+              <span *ngIf="form.controls['name'].hasError('minlength')">
+                Product name must contain more than 3 letters.
+              </span>
+            </div>
+            <div *ngIf="form.controls['name'].valid && form.controls['name'].touched"  class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        <div class="mb-3">
+          <label  class="form-label">password</label>
+          <input type="password" formControlName="password" class="form-control"  [ngClass]="{
+            'is-invalid': form.controls['password'].invalid && form.controls['password'].touched,
+            'is-valid': form.controls['password'].valid && form.controls['password'].touched,
+            }" >
+          <div *ngIf="form.controls['password'].invalid && form.controls['password'].touched" class="invalid-feedback">
+            <span *ngIf="form.controls['password'].hasError('required')">
+              Please Provide a correct Product password
+            </span>
+          </div>
+          <div *ngIf="form.controls['password'].valid && form.controls['password'].touched"  class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">phoneNumber</label>
+            <input type="text" formControlName="phoneNumber" class="form-control"
+            [ngClass]="{
+              'is-invalid': form.controls['phoneNumber'].invalid && form.controls['phoneNumber'].touched,
+              'is-valid': form.controls['phoneNumber'].valid && form.controls['phoneNumber'].touched,
+              }" >
+            <div *ngIf="form.controls['phoneNumber'].invalid && form.controls['phoneNumber'].touched" class="invalid-feedback">
+              <span *ngIf="form.controls['phoneNumber'].hasError('required')">
+                Please Provide a correct Product phoneNumber
+              </span>
+              <span *ngIf="form.controls['phoneNumber'].hasError('minlength')">
+                Product phoneNumber must contain more than 3 letters.
+              </span>
+            </div>
+            <div *ngIf="form.controls['phoneNumber'].valid && form.controls['phoneNumber'].touched"  class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        <div class="mb-3">
+          <label  class="form-label">email</label>
+          <input type="email" formControlName="email" class="form-control"  [ngClass]="{
+            'is-invalid': form.controls['email'].invalid && form.controls['email'].touched,
+            'is-valid': form.controls['email'].valid && form.controls['email'].touched,
+            }" >
+          <div *ngIf="form.controls['email'].invalid && form.controls['email'].touched" class="invalid-feedback">
+            <span *ngIf="form.controls['email'].hasError('required')">
+              Please Provide a correct Product email
+            </span>
+          </div>
+          <div *ngIf="form.controls['email'].valid && form.controls['email'].touched"  class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Register</button>
+    </form>
+    </div>
