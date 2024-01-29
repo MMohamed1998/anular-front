@@ -13,11 +13,16 @@ import { RouterModule } from "@angular/router";
 import { routes } from "./app.routes";
 import { ProductsComponent } from "./Components/products/products.component";
 import { ProductListComponent } from "./Components/product-list/product-list.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { RegisterComponent } from "./Components/register/register.component";
 import { AddProductComponent } from "./Components/add-product/add-product.component";
 import { EditProductComponent } from "./Components/Edit-Product/Edit-Product.component";
 import { ProductDetailsComponent } from "./Components/product-details/product-details.component";
+import { WishlistComponent } from "./Components/wishlist/wishlist.component";
+import { AuthInterceptor } from "./Services/Interceptors/auth.interceptor";
+import { LoaderInterceptor } from "./Services/Interceptors/loader.Interceptor";
+import { UserLayoutComponent } from "./Components/user-layout/user-layout.component";
+import { LoaderComponent } from "./Components/loader/loader.component";
 
 @NgModule({
     declarations:[	
@@ -32,7 +37,10 @@ import { ProductDetailsComponent } from "./Components/product-details/product-de
       ProductListComponent,
       AddProductComponent,
       EditProductComponent,
-      ProductDetailsComponent
+      ProductDetailsComponent,
+      WishlistComponent,
+      LoaderComponent,
+      UserLayoutComponent
    ],
     imports:[
         BrowserModule,
@@ -44,6 +52,8 @@ import { ProductDetailsComponent } from "./Components/product-details/product-de
     bootstrap:[AppComponent],
     providers:[
         CartListService,
+        {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
+        {provide:HTTP_INTERCEPTORS,useClass:LoaderInterceptor,multi:true}
     ]
 })
 
